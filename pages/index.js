@@ -85,6 +85,9 @@ export default class extends React.Component {
   }
 }
 
+const h1FontSize = '62px';
+const h2FontSize = '28px';
+
 const Hello = styled.div`
   position: fixed;
   top: 50%;
@@ -92,8 +95,8 @@ const Hello = styled.div`
   right: 0;
   display: block;
   width: initial;
-  height: 85px;
-  max-width: 500px;
+  height: calc(${h1FontSize} + ${h2FontSize});
+  max-width: 470px;
   margin: 0 auto;
   overflow: hidden;
   color: #fff;
@@ -107,16 +110,16 @@ const Card = styled.div`
   bottom: 0;
   right: 0;
   margin: auto;
-  text-align: center;
+  text-align: left;
   border-radius: 2px;
   transition: all .8s cubic-bezier(.23, 1, .32, 1);
 `;
 
 const H1 = styled.h1`
   margin: 0;
-  font-size: 60px;
+  font-size: ${h1FontSize};
   font-weight: 200;
-  line-height: 60px;
+  line-height: ${h1FontSize};
   text-transform: uppercase;
 
   strong {
@@ -126,9 +129,9 @@ const H1 = styled.h1`
 
 const H2 = styled.h2`
   margin: 0;
-  font-size: 28px;
+  font-size: ${h2FontSize};
   font-weight: 500;
-  line-height: 28px;
+  line-height: ${h2FontSize};
   text-transform: uppercase;
   color: rgba(235, 235, 235, 0.8);
 `;
