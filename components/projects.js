@@ -1,7 +1,9 @@
 /* Vendor */
 import styled from 'styled-components';
+import Link from 'next/link';
 
 /* Helpers */
+import { linkResolver } from '../helpers';
 import media from '../helpers/media';
 
 export default class extends React.Component {
@@ -15,12 +17,19 @@ export default class extends React.Component {
         </Header>
 
         <Projects>
-          { projects.map(project => (
-            <Project key={ project.id } url={ project.url }>
-              <Title>
-                { project.title }
-              </Title>
-            </Project>
+          { projects.map((project, index) => (
+            <Link
+              key={ index }
+              as={ linkResolver(project) }
+              href={ `/project?slug=${project.uid}` }
+              passHref
+            >
+              <Project image={ project.data.image.url }>
+                <Title>
+                  { project.data.title[0].text }
+                </Title>
+              </Project>
+            </Link>
           )) }
         </Projects>
       </Component>
@@ -66,7 +75,7 @@ const Project = styled.div`
   display: block;
   height: calc(100vw * 0.8);
   max-width: 100%;
-  background: url(${props => props.url}) no-repeat;
+  background: url(${props => props.image}) no-repeat;
   background-size: cover;
   background-position: 50%;
   cursor: url(/static/images/cursor_plus.png) 40 40, auto;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import media from '../helpers/media';
 
 /* Layouts */
-import Page from '../layouts/main';
+import MainLayout from '../layouts/main';
 
 export default class extends React.Component {
   static async getInitialProps({ query }) {
@@ -21,9 +21,9 @@ export default class extends React.Component {
     const { project } = this.props;
 
     return (
-      <Page>
+      <MainLayout>
         <h1>{ project.title }</h1>
-      </Page>
+      </MainLayout>
     );
   }
 }
