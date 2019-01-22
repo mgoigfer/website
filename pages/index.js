@@ -1,3 +1,6 @@
+/* Vendor */
+import React, { Component } from 'react';
+
 /* API */
 import { getProjectsAPI } from '../api';
 
@@ -8,7 +11,7 @@ import MainLayout from '../layouts/main';
 import Hello from '../components/hello';
 import Projects from '../components/projects';
 
-export default class extends React.Component {
+export default class extends Component {
   static async getInitialProps() {
     const response = await getProjectsAPI();
 

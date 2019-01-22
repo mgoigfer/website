@@ -4,7 +4,24 @@ import Prismic from 'prismic-javascript';
 /* Config */
 import { PRISMIC_API_URL } from '../config';
 
-export const getProjectsAPI = async params => {
+const getProjectAPI = async slug => {
+  try {
+    // We initialise the API with Prismic's kit.
+    const API = await Prismic.api(PRISMIC_API_URL);
+
+    // We pass up the slug to request the correct project.
+    const response = await API.query(
+      Prismic.Predicates.at('my.project.uid', slug)
+    );
+
+    return response.results[0];
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+const getProjectsAPI = async params => {
   try {
     // We initialise the API with Prismic's kit.
     const API = await Prismic.api(PRISMIC_API_URL);
@@ -28,6 +45,7 @@ export const getProjectsAPI = async params => {
   }
 };
 
-export default {
-  getProjectsAPI
+export {
+  getProjectAPI,
+  getProjectsAPI,
 };

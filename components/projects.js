@@ -78,7 +78,7 @@ const Project = styled.div`
   background: url(${props => props.image}) no-repeat;
   background-size: cover;
   background-position: 50%;
-  cursor: url(/static/images/cursor_plus.png) 40 40, auto;
+  cursor: url(/static/images/cursor-plus.png) 40 40, auto;
   transition: opacity .35s ease-in-out;
 
   &:hover {
