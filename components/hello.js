@@ -68,7 +68,7 @@ export default class extends React.Component {
 
   handleScroll() {
     this.setState({
-      isHelloHidden: document.body.scrollTop > 50 || document.documentElement.scrollTop > 50,
+      isHelloHidden: document.body.scrollTop > ((window.innerHeight / 2) - 88) || document.documentElement.scrollTop > ((window.innerHeight / 2) - 88),
     });
   }
 
@@ -102,14 +102,15 @@ const h2FontSizeTablet = '29px';
 const h1FontSizeLaptop = '88px';
 const h2FontSizeLaptop = '37px';
 
+const borderSize = '10px';
 const Component = styled.section`
-  position: relative;
-  width: 100%;
-  height: 100vh;
+  width: calc(100% - 2 * ${borderSize});
+  height: calc(100vh - 2 * ${borderSize});
+  border: ${borderSize} solid #000;
 `;
 
 const Hello = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 0;
   right: 0;

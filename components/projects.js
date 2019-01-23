@@ -41,7 +41,6 @@ const nColumnsTablet = 2;
 const nColumnsDesktop = 2;
 
 const Component = styled.section`
-  background-color: rgba(0,0,0,1);
   color: #fff;
 `;
 

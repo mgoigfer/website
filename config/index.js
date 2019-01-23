@@ -1,6 +1,5 @@
 const DEFAULT_SEO = {
   title: 'Mikel Goig - Desarrollador web full-stack',
-
   description: 'Mikel Goig - Desarrollador web full-stack',
 
   openGraph: {
