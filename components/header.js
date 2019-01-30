@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+/* Helpers */
+import media from '../helpers/media';
+
 export default class extends Component {
   render() {
     return (
@@ -26,6 +29,8 @@ export default class extends Component {
   }
 }
 
+const headerHeight = 'calc(40px + 2vw)';
+
 const Header = styled.header`
   z-index: 1001;
   position: absolute;
@@ -33,20 +38,20 @@ const Header = styled.header`
   left: 0;
   right: 0;
   width: 100%;
-  height: 36.13px;
+  height: ${headerHeight};
   box-sizing: border-box;
   border-color: #000;
   border-style: solid;
   background: #000;
   color: #fff;
-  transition: color .2s,background-color .2s;
+  transition: color .2s, background-color .2s;
 `;
 
 const Nav = styled.nav`
   position: relative;
   width: 100%;
   letter-spacing: 1px;
-  font-size: 2vw;
+  font-size: calc(12px + 1vw);
   line-height: 1.5em;
 
   ul {
@@ -57,12 +62,12 @@ const Nav = styled.nav`
 
     li {
       display: inline-block;
-      line-height: 36.13px;
+      line-height: ${headerHeight};
 
       a {
         line-height: 1;
-        padding: 0 6.77px;
-        margin-left: -6.77px;
+        padding: 0 3vw;
+        margin-left: -3vw;
         display: inline-block;
         opacity: 1;
         color: #fff;
@@ -80,7 +85,7 @@ const H1 = styled.h1`
   bottom: 0;
   margin: auto;
   right: 10.32px;
-  font-size: 2vw;
+  font-size: calc(12px + 1vw);
   font-weight: 400;
   text-transform: uppercase;
   color: #fff;
