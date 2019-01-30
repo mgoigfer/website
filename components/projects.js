@@ -12,10 +12,6 @@ export default class extends React.Component {
 
     return (
       <Component>
-        <Header>
-          Proyectos
-        </Header>
-
         <Projects>
           { projects.map((project, index) => (
             <Link
@@ -42,11 +38,6 @@ const nColumnsDesktop = 2;
 
 const Component = styled.section`
   color: #fff;
-`;
-
-const Header = styled.header`
-  padding: 15px;
-  text-align: center;
 `;
 
 const Projects = styled.div`

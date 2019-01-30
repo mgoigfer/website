@@ -2,21 +2,28 @@ const DEFAULT_SEO = {
   title: 'Mikel Goig - Desarrollador web full-stack',
   description: 'Mikel Goig - Desarrollador web full-stack',
 
-  openGraph: {
-    type: 'website',
-    locale: 'es_ES',
-    url: 'https://mikelgoig.com',
-    title: 'Mikel Goig - Desarrollador web full-stack',
-    description: 'Mikel Goig - Desarrollador web full-stack',
-    image: 'https://mikelgoig.com/static/images/og-image-mikel-goig-website.png',
-    site_name: 'MikelGoig.com',
-    imageWidth: 1200,
-    imageHeight: 1200,
+  twitter: {
+    cardType: 'summary_large_image',
+    handle: '@mgoigfer',
   },
 
-  twitter: {
-    handle: '@mgoigfer',
-    cardType: 'summary_large_image',
+  openGraph: {
+    url: 'https://mikelgoig.com',
+    type: 'website',
+    title: 'Mikel Goig - Desarrollador web full-stack',
+    description: 'Mikel Goig - Desarrollador web full-stack',
+    images: [
+      {
+        url: 'https://mikelgoig.com/static/images/og-image-mikel-goig-website.png',
+        width: 1200,
+        height: 1200,
+        alt: 'Mikel Goig - Desarrollador web full-stack',
+      },
+    ],
+    defaultImageHeight: 1200,
+    defaultImageWidth: 1200,
+    locale: 'es_ES',
+    site_name: 'MikelGoig.com',
   },
 };
 
