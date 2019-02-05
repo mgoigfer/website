@@ -103,10 +103,39 @@ const h1FontSizeLaptop = '88px';
 const h2FontSizeLaptop = '37px';
 
 const borderSize = '10px';
+const borderSizeTablet = '14px';
+const borderSizeLaptop = '18px';
+const borderSizeLaptopL = '24px';
+const borderSizeDesktop = '28px';
+
 const Component = styled.section`
   width: calc(100% - 2 * ${borderSize});
   height: calc(100vh - 2 * ${borderSize});
   border: ${borderSize} solid #000;
+
+  ${media.tablet`
+    width: calc(100% - 2 * ${borderSizeTablet});
+    height: calc(100vh - 2 * ${borderSizeTablet});
+    border: ${borderSizeTablet} solid #000;
+  `}
+
+  ${media.laptop`
+    width: calc(100% - 2 * ${borderSizeLaptop});
+    height: calc(100vh - 2 * ${borderSizeLaptop});
+    border: ${borderSizeLaptop} solid #000;
+  `}
+
+  ${media.laptopL`
+    width: calc(100% - 2 * ${borderSizeLaptopL});
+    height: calc(100vh - 2 * ${borderSizeLaptopL});
+    border: ${borderSizeLaptopL} solid #000;
+  `}
+
+  ${media.desktop`
+    width: calc(100% - 2 * ${borderSizeDesktop});
+    height: calc(100vh - 2 * ${borderSizeDesktop});
+    border: ${borderSizeDesktop} solid #000;
+  `}
 `;
 
 const Hello = styled.div`
