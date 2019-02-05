@@ -75,7 +75,7 @@ export default class extends React.Component {
   render() {
     return (
       <Component>
-        <Hello hidden={ this.state.isHelloHidden }>
+        <Hello hidden={this.state.isHelloHidden}>
           <Card>
             <H1>
               Hola!Soy<strong>Mikel</strong>

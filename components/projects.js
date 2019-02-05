@@ -13,20 +13,20 @@ export default class extends React.Component {
     return (
       <Component>
         <Projects>
-          { projects.map((project, index) => (
+          {projects.map((project, index) => (
             <Link
-              key={ index }
-              as={ linkResolver(project) }
-              href={ `/project?slug=${project.uid}` }
+              key={index}
+              as={linkResolver(project)}
+              href={`/project?slug=${project.uid}`}
               passHref
             >
-              <Project image={ project.data.image.url }>
+              <Project image={project.data.image.url}>
                 <Title>
-                  { project.data.title[0].text }
+                  {project.data.title[0].text}
                 </Title>
               </Project>
             </Link>
-          )) }
+          ))}
         </Projects>
       </Component>
     );
