@@ -98,18 +98,12 @@ export default class extends Component {
       <Wrapper>
         <Hello ref={this.helloRef}>
           <Card>
-            <H1
-              ref={this.helloH1Ref}
-              hidden={this.state.isHelloH1Hidden}
-            >
+            <H1 ref={this.helloH1Ref}>
               <span>Hola!Soy</span>
               <strong>Mikel</strong>
             </H1>
 
-            <H2
-              ref={this.helloH2Ref}
-              hidden={this.state.isHelloH2Hidden}
-            >
+            <H2 ref={this.helloH2Ref}>
               Desarrollador Web
               <TypedText
                 id="typed"
@@ -172,7 +166,6 @@ const Wrapper = styled.section`
 `;
 
 const Hello = styled.div`
-  z-index: 1;
   position: fixed;
   top: 50%;
   left: 0;
@@ -218,11 +211,6 @@ const H1 = styled.h1`
   opacity: 1;
   transition: opacity .2s ease;
 
-  ${props => props.hidden && css`
-    opacity: 0;
-    pointer-events: none;
-  `}
-
   ${media.tablet`
     font-size: ${h1FontSizeTablet};
     line-height: ${h1FontSizeTablet};
@@ -248,11 +236,6 @@ const H2 = styled.h2`
   color: rgba(235, 235, 235, 0.8);
   opacity: 1;
   transition: opacity .2s ease;
-
-  ${props => props.hidden && css`
-    opacity: 0;
-    pointer-events: none;
-  `}
 
   ${media.tablet`
     font-size: ${h2FontSizeTablet};
