@@ -11,7 +11,7 @@ export default class extends Component {
 
   render() {
     return (
-      <Header ref={this.headerRef}>
+      <Header ref={this.headerRef} fixed={this.props.isFixed}>
         <Nav id="topnav">
           <ul>
             <li>
@@ -35,6 +35,7 @@ export default class extends Component {
 const headerHeight = 'calc(40px + 2vw)';
 
 const Header = styled.header`
+  z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -47,6 +48,12 @@ const Header = styled.header`
   background: #000;
   color: #fff;
   transition: color .2s, background-color .2s;
+
+  ${props => props.fixed && css`
+    position: fixed;
+    top: 0;
+    bottom: auto;
+  `}
 `;
 
 const Nav = styled.nav`

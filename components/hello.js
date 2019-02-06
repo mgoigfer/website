@@ -1,6 +1,6 @@
 /* Vendor */
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Typed from 'typed.js';
 
 /* Helpers */
@@ -83,11 +83,16 @@ export default class extends Component {
   }
 
   handleScroll() {
+    const scrollTop = document.documentElement.scrollTop;
+
+    // Header HTMLElement.
     const headerElement = this.headerRef.current.headerRef.current;
+    const headerOffsetHeight = headerElement.offsetHeight;
     const headerOffsetTop = getElementPosition(headerElement).y;
-    const headerDistanceTop = headerOffsetTop - document.documentElement.scrollTop;
+    const headerDistanceTop = headerOffsetTop - scrollTop;
 
     this.setState({
+      isHeaderFixed: headerOffsetHeight + scrollTop > window.innerHeight,
       isHelloH1Hidden: headerDistanceTop < this.state.helloH1OffsetTop,
       isHelloH2Hidden: headerDistanceTop < this.state.helloH2OffsetTop,
     });
@@ -115,6 +120,7 @@ export default class extends Component {
 
         <Header
           ref={this.headerRef}
+          isFixed={this.state.isHeaderFixed}
           isShownLogo={this.state.isHelloH1Hidden}
         />
       </Wrapper>
