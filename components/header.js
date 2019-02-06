@@ -1,14 +1,17 @@
 /* Vendor */
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-/* Helpers */
-import media from '../helpers/media';
+import styled, { css } from 'styled-components';
 
 export default class extends Component {
+  constructor(props) {
+    super(props);
+
+    this.headerRef = React.createRef();
+  }
+
   render() {
     return (
-      <Header>
+      <Header ref={this.headerRef}>
         <Nav id="topnav">
           <ul>
             <li>
@@ -22,7 +25,7 @@ export default class extends Component {
         </Nav>
 
         <a href="/">
-          <H1>Mikel</H1>
+          <H1 shown={this.props.isShownLogo}>Mikel</H1>
         </a>
       </Header>
     );
@@ -32,7 +35,6 @@ export default class extends Component {
 const headerHeight = 'calc(40px + 2vw)';
 
 const Header = styled.header`
-  z-index: 1001;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -89,4 +91,12 @@ const H1 = styled.h1`
   font-weight: 400;
   text-transform: uppercase;
   color: #fff;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  transform: translateX(-10vw);
+
+  ${props => props.shown && css`
+    opacity: 1;
+    transform: translateX(0);
+  `}
 `;

@@ -8,7 +8,6 @@ import { getProjectsAPI } from '../api';
 import MainLayout from '../layouts/main';
 
 /* Components */
-import Header from '../components/header';
 import Hello from '../components/hello';
 import Projects from '../components/projects';
 
@@ -27,8 +26,7 @@ export default class extends Component {
     return (
       <MainLayout>
         <Hello/>
-        <Header/>
-        <Projects projects={ projects }/>
+        <Projects projects={projects}/>
       </MainLayout>
     );
   }

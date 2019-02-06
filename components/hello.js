@@ -1,11 +1,16 @@
 /* Vendor */
+import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import Typed from 'typed.js';
 
 /* Helpers */
+import { getElementPosition } from '../helpers';
 import media from '../helpers/media';
 
-export default class extends React.Component {
+/* Components */
+import Header from './header';
+
+export default class extends Component {
   constructor(props) {
     super(props);
 
@@ -19,6 +24,11 @@ export default class extends React.Component {
         'rgba(255,243,109,1)', // yellow
       ],
     };
+
+    this.helloRef = React.createRef();
+    this.helloH1Ref = React.createRef();
+    this.helloH2Ref = React.createRef();
+    this.headerRef = React.createRef();
 
     this.handlePreStringTyped = this.handlePreStringTyped.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
@@ -51,6 +61,12 @@ export default class extends React.Component {
       preStringTyped: this.handlePreStringTyped,
     });
 
+    this.setState({
+      helloH1OffsetTop: getElementPosition(this.helloH1Ref.current).y,
+      helloH2OffsetTop: getElementPosition(this.helloH2Ref.current).y,
+    });
+
+    /* Event listeners */
     window.onscroll = this.handleScroll;
   }
 
@@ -67,21 +83,33 @@ export default class extends React.Component {
   }
 
   handleScroll() {
+    const headerElement = this.headerRef.current.headerRef.current;
+    const headerOffsetTop = getElementPosition(headerElement).y;
+    const headerDistanceTop = headerOffsetTop - document.documentElement.scrollTop;
+
     this.setState({
-      isHelloHidden: document.body.scrollTop > ((window.innerHeight / 2) - 88) || document.documentElement.scrollTop > ((window.innerHeight / 2) - 88),
+      isHelloH1Hidden: headerDistanceTop < this.state.helloH1OffsetTop,
+      isHelloH2Hidden: headerDistanceTop < this.state.helloH2OffsetTop,
     });
   }
 
   render() {
     return (
-      <Component>
-        <Hello hidden={this.state.isHelloHidden}>
+      <Wrapper>
+        <Hello ref={this.helloRef}>
           <Card>
-            <H1>
-              Hola!Soy<strong>Mikel</strong>
+            <H1
+              ref={this.helloH1Ref}
+              hidden={this.state.isHelloH1Hidden}
+            >
+              <span>Hola!Soy</span>
+              <strong>Mikel</strong>
             </H1>
 
-            <H2>
+            <H2
+              ref={this.helloH2Ref}
+              hidden={this.state.isHelloH2Hidden}
+            >
               Desarrollador Web
               <TypedText
                 id="typed"
@@ -90,7 +118,12 @@ export default class extends React.Component {
             </H2>
           </Card>
         </Hello>
-      </Component>
+
+        <Header
+          ref={this.headerRef}
+          isShownLogo={this.state.isHelloH1Hidden}
+        />
+      </Wrapper>
     );
   }
 }
@@ -108,7 +141,7 @@ const borderSizeLaptop = '18px';
 const borderSizeLaptopL = '24px';
 const borderSizeDesktop = '28px';
 
-const Component = styled.section`
+const Wrapper = styled.section`
   width: calc(100% - 2 * ${borderSize});
   height: calc(100vh - 2 * ${borderSize});
   border: ${borderSize} solid #000;
@@ -139,6 +172,7 @@ const Component = styled.section`
 `;
 
 const Hello = styled.div`
+  z-index: 1;
   position: fixed;
   top: 50%;
   left: 0;
@@ -151,11 +185,6 @@ const Hello = styled.div`
   overflow: hidden;
   color: #fff;
   transform: translateY(-50%);
-
-  ${props => props.hidden && css`
-    opacity: 0;
-    pointer-events: none;
-  `}
 
   ${media.tablet`
     height: calc(${h1FontSizeTablet} + ${h2FontSizeTablet});
@@ -177,19 +206,22 @@ const Card = styled.div`
   margin: auto;
   text-align: left;
   border-radius: 2px;
-  transition: all .8s cubic-bezier(.23, 1, .32, 1);
 `;
 
 const H1 = styled.h1`
+  display: block;
   margin: 0;
   font-size: ${h1FontSize};
   line-height: ${h1FontSize};
   font-weight: 200;
   text-transform: uppercase;
+  opacity: 1;
+  transition: opacity .2s ease;
 
-  strong {
-    font-weight: 500;
-  }
+  ${props => props.hidden && css`
+    opacity: 0;
+    pointer-events: none;
+  `}
 
   ${media.tablet`
     font-size: ${h1FontSizeTablet};
@@ -200,15 +232,27 @@ const H1 = styled.h1`
     font-size: ${h1FontSizeLaptop};
     line-height: ${h1FontSizeLaptop};
   `}
+
+  strong {
+    font-weight: 500;
+  }
 `;
 
 const H2 = styled.h2`
+  display: block;
   margin: 0;
   font-size: ${h2FontSize};
   line-height: ${h2FontSize};
   font-weight: 500;
   text-transform: uppercase;
   color: rgba(235, 235, 235, 0.8);
+  opacity: 1;
+  transition: opacity .2s ease;
+
+  ${props => props.hidden && css`
+    opacity: 0;
+    pointer-events: none;
+  `}
 
   ${media.tablet`
     font-size: ${h2FontSizeTablet};
