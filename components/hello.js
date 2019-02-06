@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import Typed from 'typed.js';
 
 /* Helpers */
-import { getElementPosition } from '../helpers';
 import media from '../helpers/media';
-
-/* Components */
-import Header from './header';
 
 export default class extends Component {
   constructor(props) {
@@ -25,13 +21,8 @@ export default class extends Component {
       ],
     };
 
-    this.helloRef = React.createRef();
-    this.helloH1Ref = React.createRef();
-    this.helloH2Ref = React.createRef();
-    this.headerRef = React.createRef();
-
+    /* Bind event handlers */
     this.handlePreStringTyped = this.handlePreStringTyped.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
@@ -60,21 +51,10 @@ export default class extends Component {
       contentType: 'html',
       preStringTyped: this.handlePreStringTyped,
     });
-
-    this.setState({
-      helloH1OffsetTop: getElementPosition(this.helloH1Ref.current).y,
-      helloH2OffsetTop: getElementPosition(this.helloH2Ref.current).y,
-    });
-
-    /* Add event listeners */
-    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
     this.typed.destroy();
-
-    /* Remove event listeners */
-    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handlePreStringTyped(arrayPos) {
@@ -85,33 +65,17 @@ export default class extends Component {
     });
   }
 
-  handleScroll() {
-    const scrollTop = document.documentElement.scrollTop;
-
-    // Header HTMLElement.
-    const headerElement = this.headerRef.current.headerRef.current;
-    const headerOffsetHeight = headerElement.offsetHeight;
-    const headerOffsetTop = getElementPosition(headerElement).y;
-    const headerDistanceTop = headerOffsetTop - scrollTop;
-
-    this.setState({
-      isHeaderFixed: headerOffsetHeight + scrollTop > window.innerHeight,
-      isHelloH1Hidden: headerDistanceTop < this.state.helloH1OffsetTop,
-      isHelloH2Hidden: headerDistanceTop < this.state.helloH2OffsetTop,
-    });
-  }
-
   render() {
     return (
       <Wrapper>
-        <Hello ref={this.helloRef}>
+        <Hello>
           <Card>
-            <H1 ref={this.helloH1Ref}>
+            <H1>
               <span>Hola!Soy</span>
               <strong>Mikel</strong>
             </H1>
 
-            <H2 ref={this.helloH2Ref}>
+            <H2>
               Desarrollador Web
               <TypedText
                 id="typed"
@@ -121,11 +85,7 @@ export default class extends Component {
           </Card>
         </Hello>
 
-        <Header
-          ref={this.headerRef}
-          isFixed={this.state.isHeaderFixed}
-          isShownLogo={this.state.isHelloH1Hidden}
-        />
+        <Loader/>
       </Wrapper>
     );
   }
@@ -270,4 +230,17 @@ const TypedText = styled.span`
   ${media.laptop`
     margin-left: 8px;
   `}
+`;
+
+const Loader = styled.div`
+  transition: background 1s ease-in-out;
+
+  body.is-loading & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+  }
 `;

@@ -1,5 +1,5 @@
 /* Vendor */
-import React, { Component as ReactComponent } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -7,38 +7,39 @@ import Link from 'next/link';
 import { linkResolver } from '../helpers';
 import media from '../helpers/media';
 
-export default class extends ReactComponent {
-  render() {
-    const { projects } = this.props;
-
-    return (
-      <Component>
-        <Projects>
-          {projects.map((project, index) => (
-            <Link
-              key={index}
-              as={linkResolver(project)}
-              href={`/project?slug=${project.uid}`}
-              passHref
-            >
-              <Project image={project.data.image.url}>
-                <Title>
-                  {project.data.title[0].text}
-                </Title>
-              </Project>
-            </Link>
-          ))}
-        </Projects>
-      </Component>
-    );
-  }
+export default function({ projects }) {
+  return (
+    <Wrapper className="js-projects">
+      <Projects>
+        {projects.map((project, index) => (
+          <Link
+            key={index}
+            as={linkResolver(project)}
+            href={{
+              pathname: '/project',
+              query: {
+                slug: project.uid,
+              },
+            }}
+            passHref
+          >
+            <Project image={project.data.image.url}>
+              <Title>
+                {project.data.title[0].text}
+              </Title>
+            </Project>
+          </Link>
+        ))}
+      </Projects>
+    </Wrapper>
+  );
 }
 
 const nColumnsTablet = 2;
 const nColumnsLaptopL = 3;
 const nColumnsDesktop = 4;
 
-const Component = styled.section`
+const Wrapper = styled.section`
   position: relative;
   color: #fff;
 `;
@@ -76,7 +77,7 @@ const Project = styled.div`
   background-size: cover;
   background-position: top;
   cursor: url(/static/images/cursor-plus.png) 40 40, auto;
-  transition: opacity .35s ease-in-out;
+  transition: background 1s ease-in-out;
 
   &:hover {
     background: transparent;
@@ -93,6 +94,10 @@ const Project = styled.div`
   ${media.desktop`
     height: calc(100vw / ${nColumnsDesktop} * 0.8);
   `};
+
+  body.is-loading & {
+    background: #000;
+  }
 `;
 
 const Title = styled.h3`

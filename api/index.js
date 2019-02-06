@@ -6,7 +6,6 @@ import { PRISMIC_API_URL } from '../config';
 
 const getProjectAPI = async slug => {
   try {
-    // We initialise the API with Prismic's kit.
     const API = await Prismic.api(PRISMIC_API_URL);
 
     // We pass up the slug to request the correct project.
@@ -23,7 +22,6 @@ const getProjectAPI = async slug => {
 
 const getProjectsAPI = async params => {
   try {
-    // We initialise the API with Prismic's kit.
     const API = await Prismic.api(PRISMIC_API_URL);
 
     // Here we just query the documents with a filter of only returning
@@ -41,6 +39,7 @@ const getProjectsAPI = async params => {
 
     return response;
   } catch (error) {
+    console.error(error);
     return error;
   }
 };

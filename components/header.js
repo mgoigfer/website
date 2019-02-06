@@ -1,40 +1,38 @@
 /* Vendor */
-import React, { Component } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
+import Link from 'next/link';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default function({ isFixed = false }) {
+  return (
+    <Header className="js-header" isFixed={isFixed}>
+      <Nav>
+        <ul>
+          <li>
+            <Link href={'/work'} prefetch>
+              <a className="js-link-work">Work</a>
+            </Link>
+          </li>
 
-    this.headerRef = React.createRef();
-  }
+          <li>
+            <Link href={'/about'}>
+              <a>About</a>
+            </Link>
+          </li>
+        </ul>
+      </Nav>
 
-  render() {
-    return (
-      <Header ref={this.headerRef} fixed={this.props.isFixed}>
-        <Nav id="topnav">
-          <ul>
-            <li>
-              <a href="/work/">Work</a>
-            </li>
-
-            <li>
-              <a href="/about/">About</a>
-            </li>
-          </ul>
-        </Nav>
-
-        <a href="/">
-          <H1 shown={this.props.isShownLogo}>Mikel</H1>
-        </a>
-      </Header>
-    );
-  }
+      <a href="/">
+        <H1 isShown={isFixed}>Mikel</H1>
+      </a>
+    </Header>
+  );
 }
 
 const headerHeight = 'calc(40px + 2vw)';
 
 const Header = styled.header`
+  display: block;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -47,9 +45,9 @@ const Header = styled.header`
   border-style: solid;
   background: #000;
   color: #fff;
-  transition: color .2s, background-color .2s;
+  transition: transform 1s;
 
-  ${props => props.fixed && css`
+  ${props => props.isFixed && css`
     position: fixed;
     top: 0;
     bottom: auto;
@@ -102,7 +100,7 @@ const H1 = styled.h1`
   transition: all 1s ease-in-out;
   transform: translateX(-10vw);
 
-  ${props => props.shown && css`
+  ${props => props.isShown && css`
     opacity: 1;
     transform: translateX(0);
   `}
