@@ -66,12 +66,15 @@ export default class extends Component {
       helloH2OffsetTop: getElementPosition(this.helloH2Ref.current).y,
     });
 
-    /* Event listeners */
-    window.onscroll = this.handleScroll;
+    /* Add event listeners */
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
     this.typed.destroy();
+
+    /* Remove event listeners */
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handlePreStringTyped(arrayPos) {
