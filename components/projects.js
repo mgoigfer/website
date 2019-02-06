@@ -102,7 +102,7 @@ const Title = styled.h3`
   right: 0;
   display: block;
   margin: 0 auto;
-  font-size: 0.9em;
+  font-size: 4em;
   font-weight: 600;
   text-align: center;
   opacity: 0;
