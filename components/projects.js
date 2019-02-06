@@ -1,4 +1,5 @@
 /* Vendor */
+import React, { Component as ReactComponent } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -6,7 +7,7 @@ import Link from 'next/link';
 import { linkResolver } from '../helpers';
 import media from '../helpers/media';
 
-export default class extends React.Component {
+export default class extends ReactComponent {
   render() {
     const { projects } = this.props;
 
@@ -38,6 +39,7 @@ const nColumnsLaptopL = 3;
 const nColumnsDesktop = 4;
 
 const Component = styled.section`
+  position: relative;
   color: #fff;
 `;
 
@@ -72,7 +74,7 @@ const Project = styled.div`
   max-width: 100%;
   background: url(${props => props.image}) no-repeat;
   background-size: cover;
-  background-position: 50%;
+  background-position: top;
   cursor: url(/static/images/cursor-plus.png) 40 40, auto;
   transition: opacity .35s ease-in-out;
 
