@@ -34,7 +34,8 @@ export default class extends React.Component {
 }
 
 const nColumnsTablet = 2;
-const nColumnsDesktop = 2;
+const nColumnsLaptopL = 3;
+const nColumnsDesktop = 4;
 
 const Component = styled.section`
   color: #fff;
@@ -53,6 +54,10 @@ const Projects = styled.div`
 
   ${media.tablet`
     grid-template-columns: repeat(${nColumnsTablet}, 1fr);
+  `};
+
+  ${media.laptopL`
+    grid-template-columns: repeat(${nColumnsLaptopL}, 1fr);
   `};
 
   ${media.desktop`
@@ -79,8 +84,12 @@ const Project = styled.div`
     height: calc(100vw / ${nColumnsTablet} * 0.8);
   `};
 
+  ${media.laptopL`
+    height: calc(100vw / ${nColumnsLaptopL} * 0.8);
+  `};
+
   ${media.desktop`
-  height: calc(100vw / ${nColumnsDesktop} * 0.8);
+    height: calc(100vw / ${nColumnsDesktop} * 0.8);
   `};
 `;
 
