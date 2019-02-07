@@ -71,7 +71,7 @@ const Project = styled.div`
   background-size: cover;
   background-position: top;
   border-top: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
-  cursor: url(/static/images/cursor-plus.png) 40 40, auto;
+  cursor: url(/static/images/cursor-plus.cur), default;
   transition: background ${props => props.theme.animationDurationL}ms;
 
   &:first-child {
