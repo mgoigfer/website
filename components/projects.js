@@ -38,6 +38,7 @@ const nColumnsLaptopL = 3;
 const nColumnsDesktop = 4;
 
 const Projects = styled.section`
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   background: linear-gradient(
