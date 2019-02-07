@@ -9,29 +9,27 @@ import media from '../helpers/media';
 
 export default function({ projects }) {
   return (
-    <Wrapper className="js-projects">
-      <Projects>
-        {projects.map((project, index) => (
-          <Link
-            key={index}
-            as={linkResolver(project)}
-            href={{
-              pathname: '/project',
-              query: {
-                slug: project.uid,
-              },
-            }}
-            passHref
-          >
-            <Project image={project.data.image.url}>
-              <Title>
-                {project.data.title[0].text}
-              </Title>
-            </Project>
-          </Link>
-        ))}
-      </Projects>
-    </Wrapper>
+    <Projects>
+      {projects.map((project, index) => (
+        <Link
+          key={index}
+          as={linkResolver(project)}
+          href={{
+            pathname: '/project',
+            query: {
+              slug: project.uid,
+            },
+          }}
+          passHref
+        >
+          <Project image={project.data.image.url}>
+            <Title>
+              {project.data.title[0].text}
+            </Title>
+          </Project>
+        </Link>
+      ))}
+    </Projects>
   );
 }
 
@@ -39,11 +37,7 @@ const nColumnsTablet = 2;
 const nColumnsLaptopL = 3;
 const nColumnsDesktop = 4;
 
-const Wrapper = styled.section`
-  position: relative;
-`;
-
-const Projects = styled.div`
+const Projects = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   background: linear-gradient(

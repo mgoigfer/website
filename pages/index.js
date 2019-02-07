@@ -1,13 +1,15 @@
 /* Vendor */
 import React, { Component } from 'react';
 import Router from 'next/router';
-import { withTheme } from 'styled-components';
 
 /* Helpers */
 import { getElementPosition } from '../helpers';
 
 /* API */
 import { getProjectsAPI } from '../api';
+
+/* Config */
+import { THEME } from '../config';
 
 /* Layouts */
 import MainLayout from '../layouts/main';
@@ -17,7 +19,7 @@ import Hello from '../components/hello';
 import Header from '../components/header';
 import Projects from '../components/projects';
 
-export default withTheme(class extends Component {
+export default class extends Component {
   static async getInitialProps() {
     const response = await getProjectsAPI();
 
@@ -65,7 +67,7 @@ export default withTheme(class extends Component {
 
     setTimeout(() => {
       Router.push('/work');
-    }, this.props.theme.animationDurationL);
+    }, THEME.animationDurationL);
   }
 
   handleScroll() {
@@ -91,4 +93,4 @@ export default withTheme(class extends Component {
       </MainLayout>
     );
   }
-});
+};

@@ -67,8 +67,8 @@ export default withTheme(class extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Hello>
+      <Hello>
+        <CardWrapper>
           <Card>
             <H1>
               <span>Hola!Soy</span>
@@ -83,10 +83,10 @@ export default withTheme(class extends Component {
               />
             </H2>
           </Card>
-        </Hello>
+        </CardWrapper>
 
         <Loader/>
-      </Wrapper>
+      </Hello>
     );
   }
 });
@@ -104,7 +104,7 @@ const borderWidthLaptop = '18px';
 const borderWidthLaptopL = '24px';
 const borderWidthDesktop = '28px';
 
-const Wrapper = styled.section`
+const Hello = styled.section`
   width: calc(100% - 2 * ${borderWidth});
   height: calc(100vh - 2 * ${borderWidth});
   border-width: ${borderWidth};
@@ -137,7 +137,7 @@ const Wrapper = styled.section`
   `}
 `;
 
-const Hello = styled.div`
+const CardWrapper = styled.div`
   position: fixed;
   top: 50%;
   left: 0;

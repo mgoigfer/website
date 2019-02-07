@@ -4,17 +4,17 @@ import styled from 'styled-components';
 
 export default function({ vimeoId }) {
   return (
-    <Player>
+    <VideoVimeo>
       <Iframe
         src={`https://player.vimeo.com/video/${vimeoId}`}
         frameBorder="0"
         allowFullScreen
       />
-    </Player>
+    </VideoVimeo>
   );
 }
 
-const Player = styled.div`
+const VideoVimeo = styled.div`
   position: relative;
   padding: 56.25% 0 0 0;
 `;
