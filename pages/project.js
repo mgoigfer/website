@@ -1,16 +1,16 @@
 /* Vendor */
 import React, { Component } from 'react';
 import NextSeo, { BlogJsonLd } from 'next-seo';
-import { RichText } from 'prismic-reactjs';
-
-/* Helpers */
-import { linkResolver } from '../helpers';
 
 /* API */
 import { getProjectAPI } from '../api';
 
 /* Layouts */
 import MainLayout from '../layouts/main';
+
+/* Components */
+import Header from '../components/header';
+import Project from '../components/project/project';
 
 export default class extends Component {
   static async getInitialProps({ query }) {
@@ -61,13 +61,8 @@ export default class extends Component {
           description={project.og_description[0].text}
         />
 
-        <article>
-          <h1>
-            { project.title.length ? project.title[0].text : '' }
-          </h1>
-
-          { RichText.render(project.body, linkResolver) }
-        </article>
+        <Header isFixed={true}/>
+        <Project project={project}/>
       </MainLayout>
     );
   }

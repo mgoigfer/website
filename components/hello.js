@@ -1,23 +1,23 @@
 /* Vendor */
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import Typed from 'typed.js';
 
 /* Helpers */
 import media from '../helpers/media';
 
-export default class extends Component {
+export default withTheme(class extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       // Typed text.
-      currentColor: '#fff',
+      currentColor: props.theme.white,
       colors: [
-        'rgba(255,113,176,1)', // pink
-        'rgba(0,255,255,1)', // blue
-        'rgba(65,250,112,1)', // green
-        'rgba(255,243,109,1)', // yellow
+        props.theme.pink,
+        props.theme.blue,
+        props.theme.green,
+        props.theme.yellow,
       ],
     };
 
@@ -89,7 +89,7 @@ export default class extends Component {
       </Wrapper>
     );
   }
-}
+});
 
 const h1FontSize = '35px';
 const h2FontSize = '14px';
@@ -98,39 +98,42 @@ const h2FontSizeTablet = '29px';
 const h1FontSizeLaptop = '88px';
 const h2FontSizeLaptop = '37px';
 
-const borderSize = '10px';
-const borderSizeTablet = '14px';
-const borderSizeLaptop = '18px';
-const borderSizeLaptopL = '24px';
-const borderSizeDesktop = '28px';
+const borderWidth = '10px';
+const borderWidthTablet = '14px';
+const borderWidthLaptop = '18px';
+const borderWidthLaptopL = '24px';
+const borderWidthDesktop = '28px';
 
 const Wrapper = styled.section`
-  width: calc(100% - 2 * ${borderSize});
-  height: calc(100vh - 2 * ${borderSize});
-  border: ${borderSize} solid #000;
+  width: calc(100% - 2 * ${borderWidth});
+  height: calc(100vh - 2 * ${borderWidth});
+  border-width: ${borderWidth};
+  border-style: solid;
+  border-color: ${props => props.theme.black};
+  background-color: ${props => props.theme.grey};
 
   ${media.tablet`
-    width: calc(100% - 2 * ${borderSizeTablet});
-    height: calc(100vh - 2 * ${borderSizeTablet});
-    border: ${borderSizeTablet} solid #000;
+    width: calc(100% - 2 * ${borderWidthTablet});
+    height: calc(100vh - 2 * ${borderWidthTablet});
+    border-width: ${borderWidthTablet};
   `}
 
   ${media.laptop`
-    width: calc(100% - 2 * ${borderSizeLaptop});
-    height: calc(100vh - 2 * ${borderSizeLaptop});
-    border: ${borderSizeLaptop} solid #000;
+    width: calc(100% - 2 * ${borderWidthLaptop});
+    height: calc(100vh - 2 * ${borderWidthLaptop});
+    border-width: ${borderWidthLaptop};
   `}
 
   ${media.laptopL`
-    width: calc(100% - 2 * ${borderSizeLaptopL});
-    height: calc(100vh - 2 * ${borderSizeLaptopL});
-    border: ${borderSizeLaptopL} solid #000;
+    width: calc(100% - 2 * ${borderWidthLaptopL});
+    height: calc(100vh - 2 * ${borderWidthLaptopL});
+    border-width: ${borderWidthLaptopL};
   `}
 
   ${media.desktop`
-    width: calc(100% - 2 * ${borderSizeDesktop});
-    height: calc(100vh - 2 * ${borderSizeDesktop});
-    border: ${borderSizeDesktop} solid #000;
+    width: calc(100% - 2 * ${borderWidthDesktop});
+    height: calc(100vh - 2 * ${borderWidthDesktop});
+    border-width: ${borderWidthDesktop};
   `}
 `;
 
@@ -145,7 +148,6 @@ const Hello = styled.div`
   max-width: 265px;
   margin: 0 auto;
   overflow: hidden;
-  color: #fff;
   transform: translateY(-50%);
 
   ${media.tablet`
@@ -177,8 +179,6 @@ const H1 = styled.h1`
   line-height: ${h1FontSize};
   font-weight: 200;
   text-transform: uppercase;
-  opacity: 1;
-  transition: opacity .2s ease;
 
   ${media.tablet`
     font-size: ${h1FontSizeTablet};
@@ -203,8 +203,6 @@ const H2 = styled.h2`
   font-weight: 500;
   text-transform: uppercase;
   color: rgba(235, 235, 235, 0.8);
-  opacity: 1;
-  transition: opacity .2s ease;
 
   ${media.tablet`
     font-size: ${h2FontSizeTablet};
@@ -233,14 +231,14 @@ const TypedText = styled.span`
 `;
 
 const Loader = styled.div`
-  transition: background 1s ease-in-out;
+  transition: background ${props => props.theme.animationDurationL}ms;
 
   body.is-loading & {
     position: absolute;
     top: 0;
-    left: 0;
     bottom: 0;
+    left: 0;
     right: 0;
-    background: #000;
+    background-color: ${props => props.theme.black};
   }
 `;

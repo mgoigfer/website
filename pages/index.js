@@ -1,6 +1,7 @@
 /* Vendor */
 import React, { Component } from 'react';
 import Router from 'next/router';
+import { withTheme } from 'styled-components';
 
 /* Helpers */
 import { getElementPosition } from '../helpers';
@@ -16,7 +17,7 @@ import Hello from '../components/hello';
 import Header from '../components/header';
 import Projects from '../components/projects';
 
-export default class extends Component {
+export default withTheme(class extends Component {
   static async getInitialProps() {
     const response = await getProjectsAPI();
 
@@ -64,7 +65,7 @@ export default class extends Component {
 
     setTimeout(() => {
       Router.push('/work');
-    }, 1000);
+    }, this.props.theme.animationDurationL);
   }
 
   handleScroll() {
@@ -90,4 +91,4 @@ export default class extends Component {
       </MainLayout>
     );
   }
-}
+});

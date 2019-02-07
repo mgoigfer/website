@@ -41,7 +41,6 @@ const nColumnsDesktop = 4;
 
 const Wrapper = styled.section`
   position: relative;
-  color: #fff;
 `;
 
 const Projects = styled.div`
@@ -49,10 +48,10 @@ const Projects = styled.div`
   grid-template-columns: 1fr;
   background: linear-gradient(
     to right,
-    rgba(255,113,177,1) 0%,
-    rgba(0,255,255,1) 33%,
-    rgba(66,250,121,1) 66%,
-    rgba(255,243,109,1) 100%
+    ${props => props.theme.pink} 0%,
+    ${props => props.theme.blue} 33%,
+    ${props => props.theme.green} 66%,
+    ${props => props.theme.yellow} 100%
   );
 
   ${media.tablet`
@@ -77,7 +76,7 @@ const Project = styled.div`
   background-size: cover;
   background-position: top;
   cursor: url(/static/images/cursor-plus.png) 40 40, auto;
-  transition: background 1s ease-in-out;
+  transition: background ${props => props.theme.animationDurationL}ms;
 
   &:hover {
     background: transparent;
@@ -96,7 +95,7 @@ const Project = styled.div`
   `};
 
   body.is-loading & {
-    background: #000;
+    background-color: ${props => props.theme.black};
   }
 `;
 

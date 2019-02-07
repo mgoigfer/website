@@ -29,8 +29,6 @@ export default function({ isFixed = false }) {
   );
 }
 
-const headerHeight = 'calc(40px + 2vw)';
-
 const Header = styled.header`
   display: block;
   z-index: 1;
@@ -39,13 +37,10 @@ const Header = styled.header`
   left: 0;
   right: 0;
   width: 100%;
-  height: ${headerHeight};
-  box-sizing: border-box;
-  border-color: #000;
-  border-style: solid;
-  background: #000;
-  color: #fff;
-  transition: transform 1s;
+  height: ${props => props.theme.headerHeight};
+  background: ${props => props.theme.black};
+  color: ${props => props.theme.white};
+  transition: transform ${props => props.theme.animationDurationL}ms;
 
   ${props => props.isFixed && css`
     position: fixed;
@@ -63,22 +58,18 @@ const Nav = styled.nav`
 
   ul {
     position: relative;
-    transition: color .2s, background-color .2s;
-    padding-left: 10.32px;
-    padding-right: 10.32px;
+    padding: 0 ${props => props.theme.padding};
 
     li {
       display: inline-block;
-      line-height: ${headerHeight};
+      line-height: ${props => props.theme.headerHeight};
 
       a {
         line-height: 1;
         padding: 0 3vw;
         margin-left: -3vw;
         display: inline-block;
-        opacity: 1;
-        color: #fff;
-        transition: opacity .2s;
+        color: ${props => props.theme.white};
       }
     }
   }
@@ -95,10 +86,10 @@ const H1 = styled.h1`
   font-size: calc(12px + 1vw);
   font-weight: 400;
   text-transform: uppercase;
-  color: #fff;
+  color: ${props => props.theme.white};
   opacity: 0;
-  transition: all 1s ease-in-out;
   transform: translateX(-10vw);
+  transition: all ${props => props.theme.animationDurationL}ms;
 
   ${props => props.isShown && css`
     opacity: 1;

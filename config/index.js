@@ -29,7 +29,27 @@ const DEFAULT_SEO = {
 
 const PRISMIC_API_URL = 'https://mikelgoig-website.prismic.io/api/v2';
 
+const THEME = {
+  // Colors.
+  white: '#fff',
+  black: '#000',
+  grey: '#111',
+  pink: 'rgba(255,113,176,1)',
+  blue: 'rgba(0,255,255,1)',
+  green: 'rgba(65,250,112,1)',
+  yellow: 'rgba(255,243,109,1)',
+
+  // Measures.
+  padding: 'calc(5px + 2vw)',
+  headerHeight: 'calc(40px + 2vw)',
+
+  // Animations.
+  animationDuration: 400,
+  animationDurationL: 800,
+};
+
 export {
   DEFAULT_SEO,
   PRISMIC_API_URL,
+  THEME,
 };
