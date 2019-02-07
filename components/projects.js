@@ -70,8 +70,13 @@ const Project = styled.div`
   background: url(${props => props.image}) no-repeat;
   background-size: cover;
   background-position: top;
+  border-top: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
   cursor: url(/static/images/cursor-plus.png) 40 40, auto;
   transition: background ${props => props.theme.animationDurationL}ms;
+
+  &:first-child {
+    border-top: none;
+  }
 
   &:hover {
     background: transparent;
@@ -79,14 +84,46 @@ const Project = styled.div`
 
   ${media.tablet`
     height: calc(100vw / ${nColumnsTablet} * 0.8);
+    border-left: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
+
+    /* 2 columns */
+    &:nth-child(-n+2) {
+      border-top: none;
+    }
+    &:first-child,
+    &:nth-child(odd) {
+      border-left: none;
+    }
   `};
 
   ${media.laptopL`
     height: calc(100vw / ${nColumnsLaptopL} * 0.8);
+
+    /* 3 columns */
+    &:nth-child(odd) {
+      border-left: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
+    }
+    &:nth-child(-n+3) {
+      border-top: none;
+    }
+    &:nth-child(3n+1) {
+      border-left: none;
+    }
   `};
 
   ${media.desktop`
     height: calc(100vw / ${nColumnsDesktop} * 0.8);
+
+    /* 4 columns */
+    &:nth-child(3n+1) {
+      border-left: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
+    }
+    &:nth-child(-n+4) {
+      border-top: none;
+    }
+    &:nth-child(4n+1) {
+      border-left: none;
+    }
   `};
 
   body.is-loading & {

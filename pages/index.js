@@ -1,6 +1,7 @@
 /* Vendor */
 import React, { Component } from 'react';
 import Router from 'next/router';
+import styled from 'styled-components';
 
 /* Helpers */
 import { getElementPosition } from '../helpers';
@@ -87,10 +88,16 @@ export default class extends Component {
 
     return (
       <MainLayout>
-        <Hello/>
-        <Header isFixed={this.state.isHeaderFixed}/>
-        <Projects projects={projects}/>
+        <Layout>
+          <Hello/>
+          <Header isFixed={this.state.isHeaderFixed}/>
+          <Projects projects={projects}/>
+        </Layout>
       </MainLayout>
     );
   }
 };
+
+const Layout = styled.div`
+  padding: ${props => props.theme.padding};
+`;

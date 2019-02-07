@@ -105,35 +105,35 @@ const borderWidthLaptopL = '24px';
 const borderWidthDesktop = '28px';
 
 const Hello = styled.section`
-  width: calc(100% - 2 * ${borderWidth});
-  height: calc(100vh - 2 * ${borderWidth});
-  border-width: ${borderWidth};
+  width: 100%;
+  height: calc(100vh - ${props => props.theme.padding});
+  /* border-width: ${borderWidth};
   border-style: solid;
-  border-color: ${props => props.theme.black};
+  border-color: ${props => props.theme.black}; */
   background-color: ${props => props.theme.grey};
 
   ${media.tablet`
-    width: calc(100% - 2 * ${borderWidthTablet});
-    height: calc(100vh - 2 * ${borderWidthTablet});
-    border-width: ${borderWidthTablet};
+    /* width: calc(100% - 2 * ${borderWidthTablet}); */
+    /* height: calc(100vh - 2 * ${borderWidthTablet}); */
+    /* border-width: ${borderWidthTablet}; */
   `}
 
   ${media.laptop`
-    width: calc(100% - 2 * ${borderWidthLaptop});
-    height: calc(100vh - 2 * ${borderWidthLaptop});
-    border-width: ${borderWidthLaptop};
+    /* width: calc(100% - 2 * ${borderWidthLaptop}); */
+    /* height: calc(100vh - 2 * ${borderWidthLaptop}); */
+    /* border-width: ${borderWidthLaptop}; */
   `}
 
   ${media.laptopL`
-    width: calc(100% - 2 * ${borderWidthLaptopL});
-    height: calc(100vh - 2 * ${borderWidthLaptopL});
-    border-width: ${borderWidthLaptopL};
+    /* width: calc(100% - 2 * ${borderWidthLaptopL}); */
+    /* height: calc(100vh - 2 * ${borderWidthLaptopL}); */
+    /* border-width: ${borderWidthLaptopL}; */
   `}
 
   ${media.desktop`
-    width: calc(100% - 2 * ${borderWidthDesktop});
-    height: calc(100vh - 2 * ${borderWidthDesktop});
-    border-width: ${borderWidthDesktop};
+    /* width: calc(100% - 2 * ${borderWidthDesktop}); */
+    /* height: calc(100vh - 2 * ${borderWidthDesktop}); */
+    /* border-width: ${borderWidthDesktop}; */
   `}
 `;
 
