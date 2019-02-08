@@ -3,6 +3,9 @@
     "next/babel"
   ],
   "plugins": [
+    ["module-resolver", {
+      "root": ["./src"]
+    }],
     [
       "styled-components",
       {
