@@ -67,19 +67,28 @@ const Project = styled.div`
   display: block;
   height: calc(100vw * 0.8);
   max-width: 100%;
-  background: url(${props => props.image}) no-repeat;
-  background-size: cover;
-  background-position: top;
   border-top: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
   cursor: url(/static/images/cursor-plus.cur), default;
-  transition: background ${props => props.theme.animationDurationL}ms;
 
   &:first-child {
     border-top: none;
   }
 
   &:hover {
-    background: transparent;
+    &::after {
+      opacity: 0.1;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(${props => props.image}) no-repeat;
+    background-size: cover;
+    background-position: top;
+    transition: background ${props => props.theme.animationDurationL}ms;
   }
 
   ${media.tablet`
@@ -127,7 +136,12 @@ const Project = styled.div`
   `};
 
   body.is-loading & {
-    background-color: ${props => props.theme.black};
+    cursor: default;
+
+    &::after {
+      background: ${props => props.theme.black};
+      opacity: 1;
+    }
   }
 `;
 
