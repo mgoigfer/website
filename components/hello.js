@@ -98,43 +98,12 @@ const h2FontSizeTablet = '29px';
 const h1FontSizeLaptop = '88px';
 const h2FontSizeLaptop = '37px';
 
-const borderWidth = '10px';
-const borderWidthTablet = '14px';
-const borderWidthLaptop = '18px';
-const borderWidthLaptopL = '24px';
-const borderWidthDesktop = '28px';
-
 const Hello = styled.section`
-  width: 100%;
-  height: calc(100vh - ${props => props.theme.padding});
-  /* border-width: ${borderWidth};
-  border-style: solid;
-  border-color: ${props => props.theme.black}; */
+  position: fixed;
+  border: ${props => props.theme.padding} solid ${props => props.theme.black};
+  width: calc(100vw - calc(2 * ${props => props.theme.padding}));
+  height: calc(100vh - calc(2 * ${props => props.theme.padding}));
   background-color: ${props => props.theme.grey};
-
-  ${media.tablet`
-    /* width: calc(100% - 2 * ${borderWidthTablet}); */
-    /* height: calc(100vh - 2 * ${borderWidthTablet}); */
-    /* border-width: ${borderWidthTablet}; */
-  `}
-
-  ${media.laptop`
-    /* width: calc(100% - 2 * ${borderWidthLaptop}); */
-    /* height: calc(100vh - 2 * ${borderWidthLaptop}); */
-    /* border-width: ${borderWidthLaptop}; */
-  `}
-
-  ${media.laptopL`
-    /* width: calc(100% - 2 * ${borderWidthLaptopL}); */
-    /* height: calc(100vh - 2 * ${borderWidthLaptopL}); */
-    /* border-width: ${borderWidthLaptopL}; */
-  `}
-
-  ${media.desktop`
-    /* width: calc(100% - 2 * ${borderWidthDesktop}); */
-    /* height: calc(100vh - 2 * ${borderWidthDesktop}); */
-    /* border-width: ${borderWidthDesktop}; */
-  `}
 `;
 
 const CardWrapper = styled.div`

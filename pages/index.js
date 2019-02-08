@@ -88,16 +88,20 @@ export default class extends Component {
 
     return (
       <MainLayout>
-        <Layout>
-          <Hello/>
-          <Header isFixed={this.state.isHeaderFixed}/>
+        <Hello/>
+        <Header isFixed={this.state.isHeaderFixed}/>
+        <ProjectsWrapper>
           <Projects projects={projects}/>
-        </Layout>
+        </ProjectsWrapper>
       </MainLayout>
     );
   }
 };
 
-const Layout = styled.div`
-  padding: ${props => props.theme.padding};
+const ProjectsWrapper = styled.div`
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  padding: 0 ${props => props.theme.padding} ${props => props.theme.padding};
 `;
