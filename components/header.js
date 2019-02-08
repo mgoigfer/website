@@ -10,20 +10,18 @@ export default function({ isFixed = false }) {
         <ul>
           <li>
             <Link href={'/work'} prefetch>
-              <a className="js-link-work">Work</a>
-            </Link>
-          </li>
-
-          <li>
-            <Link href={'/about'}>
-              <a>About</a>
+              <a className="js-link-work">
+                Portfolio
+              </a>
             </Link>
           </li>
         </ul>
       </Nav>
 
       <a href="/">
-        <H1 isShown={isFixed}>Mikel</H1>
+        <H1 isShown={isFixed}>
+          Mikel Goig
+        </H1>
       </a>
     </Header>
   );
