@@ -1,4 +1,4 @@
-/* Action types */
+/* Action Types */
 import { actionTypes } from 'actions';
 
 export const exampleInitialState = {
