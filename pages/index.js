@@ -10,7 +10,7 @@ import { getElementPosition } from '../helpers';
 import { getProjectsAPI } from '../api';
 
 /* Config */
-import { THEME } from '../config';
+import { THEME } from 'config';
 
 /* Layouts */
 import MainLayout from '../layouts/main';

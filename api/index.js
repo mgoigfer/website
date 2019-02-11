@@ -2,7 +2,7 @@
 import Prismic from 'prismic-javascript';
 
 /* Config */
-import { PRISMIC_API_URL } from '../config';
+import { PRISMIC_API_URL } from 'config';
 
 const getProjectAPI = async slug => {
   try {
