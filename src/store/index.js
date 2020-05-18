@@ -1,15 +1,19 @@
 /* Vendor */
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { createResponsiveStoreEnhancer } from 'redux-responsive';
 import thunkMiddleware from 'redux-thunk';
 
 /* Reducer */
-import reducer, { exampleInitialState } from 'reducers';
+import reducer from 'reducers';
 
-const makeStore = (initialState = exampleInitialState) => createStore(
+const makeStore = initialState => createStore(
   reducer,
   initialState,
-  composeWithDevTools(applyMiddleware(thunkMiddleware)),
+  composeWithDevTools(
+    createResponsiveStoreEnhancer(),
+    applyMiddleware(thunkMiddleware),
+  ),
 );
 
 export default makeStore;

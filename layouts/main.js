@@ -1,12 +1,13 @@
 /* Components */
+import { connect } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
-export default ({ children }) => (
+export default connect(state => state)(({ children }) => (
   <div>
     <GlobalStyle/>
     {children}
   </div>
-);
+));
 
 const GlobalStyle = createGlobalStyle`
   body {

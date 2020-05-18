@@ -4,7 +4,7 @@ import styled, { withTheme } from 'styled-components';
 import Typed from 'typed.js';
 
 /* Helpers */
-import media from '../helpers/media';
+import media from 'helpers/media';
 
 export default withTheme(class extends Component {
   constructor(props) {
@@ -104,6 +104,10 @@ const Hello = styled.section`
   width: calc(100vw - calc(2 * ${props => props.theme.padding}));
   height: calc(100vh - calc(2 * ${props => props.theme.padding}));
   background-color: ${props => props.theme.grey};
+
+  body.is-loading & {
+    display: none;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -119,7 +123,7 @@ const CardWrapper = styled.div`
   overflow: hidden;
   transform: translateY(-50%);
 
-  ${media.tablet`
+  ${media.tabletPortrait`
     height: calc(${h1FontSizeTablet} + ${h2FontSizeTablet});
     max-width: 530px;
   `}
@@ -149,7 +153,7 @@ const H1 = styled.h1`
   font-weight: 200;
   text-transform: uppercase;
 
-  ${media.tablet`
+  ${media.tabletPortrait`
     font-size: ${h1FontSizeTablet};
     line-height: ${h1FontSizeTablet};
   `}
@@ -173,7 +177,7 @@ const H2 = styled.h2`
   text-transform: uppercase;
   color: rgba(235, 235, 235, 0.8);
 
-  ${media.tablet`
+  ${media.tabletPortrait`
     font-size: ${h2FontSizeTablet};
     line-height: ${h2FontSizeTablet};
   `}
@@ -190,7 +194,7 @@ const TypedText = styled.span`
   font-weight: 600;
   color: ${props => props.color || 'black'};
 
-  ${media.tablet`
+  ${media.tabletPortrait`
     margin-left: 11px;
   `}
 

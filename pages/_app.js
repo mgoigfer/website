@@ -12,6 +12,9 @@ import withRedux from 'next-redux-wrapper';
 // Styled-components
 import { ThemeProvider } from 'styled-components';
 
+// Redux-responsive
+import { calculateResponsiveState } from 'redux-responsive';
+
 /* Config */
 import { DEFAULT_SEO, THEME } from 'config';
 
@@ -20,6 +23,12 @@ import makeStore from 'store';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
+    const isServer = typeof window === 'undefined';
+
+    if (!isServer) {
+      ctx.store.dispatch(calculateResponsiveState(window));
+    }
+
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
   }
