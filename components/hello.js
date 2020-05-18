@@ -11,13 +11,24 @@ export default withTheme(class extends Component {
     super(props);
 
     this.state = {
-      // Typed text.
-      currentColor: props.theme.white,
-      colors: [
+      typedCurrentColor: props.theme.white,
+
+      typedColors: [
+        props.theme.yellow,
         props.theme.pink,
+        props.theme.white,
+        props.theme.green,
         props.theme.blue,
         props.theme.green,
-        props.theme.yellow,
+      ],
+
+      typedStrings: [
+        'DevOps',
+        'Laravel',
+        'Next.js',
+        'Nuxt.js',
+        'React',
+        'Vue.js',
       ],
     };
 
@@ -27,11 +38,7 @@ export default withTheme(class extends Component {
 
   componentDidMount() {
     this.typed = new Typed('#typed', {
-      strings: [
-        'Frontend',
-        'Backend',
-        'DevOps',
-      ],
+      strings: this.state.typedStrings,
       typeSpeed: 50,
       startDelay: 500,
       backSpeed: 50,
@@ -60,7 +67,7 @@ export default withTheme(class extends Component {
   handlePreStringTyped(arrayPos) {
     this.setState(state => {
       return {
-        currentColor: state.colors[arrayPos],
+        typedCurrentColor: state.typedColors[arrayPos],
       };
     });
   }
@@ -76,10 +83,10 @@ export default withTheme(class extends Component {
             </H1>
 
             <H2>
-              Desarrollador Web
+              Desarrollador Web 👨‍💻
               <TypedText
                 id="typed"
-                color={this.state.currentColor}
+                color={this.state.typedCurrentColor}
               />
             </H2>
           </Card>
