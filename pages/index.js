@@ -1,189 +1,107 @@
 /* Vendor */
+import React, { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
-import Typed from 'typed.js';
 
 /* Helpers */
-import media from '../helpers/media';
+import { getElementPosition } from 'helpers';
+
+/* API */
+import { getProjectsAPI } from '../api';
+
+/* Config */
+import { THEME } from 'config';
 
 /* Layouts */
-import Page from '../layouts/main';
+import MainLayout from '../layouts/main';
 
-export default class extends React.Component {
+/* Components */
+import Hello from '../components/hello';
+import Header from '../components/header';
+import Projects from '../components/projects';
+
+export default class extends Component {
+  static async getInitialProps() {
+    const response = await getProjectsAPI();
+
+    return {
+      projects: response.results,
+    };
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      // Typed text.
-      currentColor: '#fff',
-      colors: [
-        'rgba(255,113,176,1)', // pink
-        'rgba(0,255,255,1)', // blue
-        'rgba(65,250,112,1)', // green
-        'rgba(255,243,109,1)', // yellow
-      ],
-    };
+      isHeaderFixed: false,
+    }
 
-    this.handleStringTyped = this.handleStringTyped.bind(this);
+    /* Bind event handlers */
+    this.handleClickWorkLink = this.handleClickWorkLink.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    this.typed = new Typed('#typed', {
-      strings: [
-        'Frontend',
-        'Backend',
-        'DevOps',
-      ],
-      typeSpeed: 50,
-      startDelay: 500,
-      backSpeed: 50,
-      smartBackspace: false,
-      shuffle: false,
-      backDelay: 1500,
-      fadeOut: false,
-      fadeOutClass: 'typed-fade-out',
-      fadeOutDelay: 500,
-      loop: true,
-      loopCount: Infinity,
-      showCursor: true,
-      cursorChar: '.',
-      autoInsertCss: true,
-      attr: null,
-      bindInputFocusEvents: false,
-      contentType: 'html',
-      preStringTyped: this.handleStringTyped,
-    });
+    /* Add event listeners */
+    window.addEventListener('scroll', this.handleScroll);
+    document.querySelector('.js-link-work').addEventListener('click', this.handleClickWorkLink);
   }
 
   componentWillUnmount() {
-    this.typed.destroy();
+    /* Remove event listeners */
+    window.removeEventListener('scroll', this.handleScroll);
+    document.querySelector('.js-link-work').removeEventListener('click', this.handleClickWorkLink);
   }
 
-  handleStringTyped(arrayPos) {
-    this.setState(state => {
-      return {
-        currentColor: state.colors[arrayPos],
-      };
+  handleClickWorkLink(event) {
+    event.preventDefault();
+
+    document.body.classList.add('is-loading');
+
+    const scrollTop = document.documentElement.scrollTop;
+
+    // Header HTMLElement.
+    const headerElement = document.querySelector('.js-header');
+    const headerOffsetTop = getElementPosition(headerElement).y;
+    const headerDistanceTop = headerOffsetTop - scrollTop;
+    headerElement.style.transform = `translate(0px, -${headerDistanceTop}px)`;
+
+    setTimeout(() => {
+      Router.push('/work');
+    }, THEME.animationDurationL);
+  }
+
+  handleScroll() {
+    const scrollTop = document.documentElement.scrollTop;
+
+    // Header HTMLElement.
+    const headerElement = document.querySelector('.js-header');
+    const headerOffsetHeight = headerElement.offsetHeight;
+
+    this.setState({
+      isHeaderFixed: scrollTop > window.innerHeight - headerOffsetHeight,
     });
   }
 
   render() {
+    const { projects } = this.props;
+
     return (
-      <Page>
-        <Hello>
-          <Card>
-            <H1>
-              Hola!Soy<strong>Mikel</strong>
-            </H1>
-            <H2>
-              Desarrollador Web
-              <TypedText
-                id="typed"
-                color={this.state.currentColor}
-              />
-            </H2>
-          </Card>
-        </Hello>
-      </Page>
+      <MainLayout>
+        <Hello/>
+        <Header isFixed={this.state.isHeaderFixed}/>
+        <ProjectsWrapper>
+          <Projects projects={projects}/>
+        </ProjectsWrapper>
+      </MainLayout>
     );
   }
-}
+};
 
-const h1FontSize = '35px';
-const h2FontSize = '14px';
-const h1FontSizeTablet = '70px';
-const h2FontSizeTablet = '29px';
-const h1FontSizeLaptop = '88px';
-const h2FontSizeLaptop = '37px';
-
-const Hello = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: block;
-  width: initial;
-  height: calc(${h1FontSize} + ${h2FontSize});
-  max-width: 265px;
-  margin: 0 auto;
-  overflow: hidden;
-  color: #fff;
-  transform: translateY(-50%);
-
-  ${media.tablet`
-    height: calc(${h1FontSizeTablet} + ${h2FontSizeTablet});
-    max-width: 530px;
-  `}
-
-  ${media.laptop`
-    height: calc(${h1FontSizeLaptop} + ${h2FontSizeLaptop});
-    max-width: 650px;
-  `}
-`;
-
-const Card = styled.div`
+const ProjectsWrapper = styled.div`
   position: absolute;
-  top: 0;
+  top: 100vh;
   left: 0;
-  bottom: 0;
   right: 0;
-  margin: auto;
-  text-align: left;
-  border-radius: 2px;
-  transition: all .8s cubic-bezier(.23, 1, .32, 1);
-`;
-
-const H1 = styled.h1`
-  margin: 0;
-  font-size: ${h1FontSize};
-  line-height: ${h1FontSize};
-  font-weight: 200;
-  text-transform: uppercase;
-
-  strong {
-    font-weight: 500;
-  }
-
-  ${media.tablet`
-    font-size: ${h1FontSizeTablet};
-    line-height: ${h1FontSizeTablet};
-  `}
-
-  ${media.laptop`
-    font-size: ${h1FontSizeLaptop};
-    line-height: ${h1FontSizeLaptop};
-  `}
-`;
-
-const H2 = styled.h2`
-  margin: 0;
-  font-size: ${h2FontSize};
-  line-height: ${h2FontSize};
-  font-weight: 500;
-  text-transform: uppercase;
-  color: rgba(235, 235, 235, 0.8);
-
-  ${media.tablet`
-    font-size: ${h2FontSizeTablet};
-    line-height: ${h2FontSizeTablet};
-  `}
-
-  ${media.laptop`
-    font-size: ${h2FontSizeLaptop};
-    line-height: ${h2FontSizeLaptop};
-  `}
-`;
-
-const TypedText = styled.span`
-  display: inline-block;
-  margin-left: 7px;
-  font-weight: 600;
-  color: ${props => props.color || 'black'};
-
-  ${media.tablet`
-    margin-left: 11px;
-  `}
-
-  ${media.laptop`
-    margin-left: 8px;
-  `}
+  padding: 0 ${props => props.theme.padding} ${props => props.theme.padding};
 `;
