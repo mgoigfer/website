@@ -4,7 +4,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 
 /* Helpers */
-import { getElementPosition } from '../helpers';
+import { getElementPosition } from 'helpers';
 
 /* API */
 import { getProjectsAPI } from '../api';

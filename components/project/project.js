@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { RichText } from 'prismic-reactjs';
 
 /* Helpers */
-import { linkResolver } from '../../helpers';
+import { linkResolver } from 'helpers';
 
 /* Components */
 import VideoVimeo from './videoVimeo';

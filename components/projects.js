@@ -1,37 +1,47 @@
 /* Vendor */
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Link from 'next/link';
 
 /* Helpers */
-import { linkResolver } from '../helpers';
-import media from '../helpers/media';
+import { linkResolver } from 'helpers';
+import media from 'helpers/media';
 
-export default function({ projects }) {
-  return (
-    <Projects>
-      {projects.map((project, index) => (
-        <Link
-          key={index}
-          as={linkResolver(project)}
-          href={{
-            pathname: '/project',
-            query: {
-              slug: project.uid,
-            },
-          }}
-          passHref
-        >
-          <Project image={project.data.image.url}>
+const mapStateToProps = state => {
+  return {
+    browser: state.browser,
+  };
+};
+
+export default connect(mapStateToProps)(class extends Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
+
+  render() {
+    const { projects } = this.props;
+
+    console.log(projects);
+
+    return (
+      <Projects>
+        {projects.map((project, index) => (
+          <Project
+            key={index}
+            href={project.data.url}
+            target={'_blank'}
+            image={project.data.image.url}
+          >
             <Title>
               {project.data.title[0].text}
             </Title>
           </Project>
-        </Link>
-      ))}
-    </Projects>
-  );
-}
+        ))}
+      </Projects>
+    );
+  }
+});
 
 const nColumnsTablet = 2;
 const nColumnsLaptopL = 3;
@@ -39,7 +49,9 @@ const nColumnsDesktop = 4;
 
 const Projects = styled.section`
   position: relative;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   grid-template-columns: 1fr;
   background: linear-gradient(
     to right,
@@ -49,11 +61,11 @@ const Projects = styled.section`
     ${props => props.theme.yellow} 100%
   );
 
-  ${media.tablet`
+  ${media.tabletPortrait`
     grid-template-columns: repeat(${nColumnsTablet}, 1fr);
   `};
 
-  ${media.laptopL`
+  ${media.laptop`
     grid-template-columns: repeat(${nColumnsLaptopL}, 1fr);
   `};
 
@@ -62,9 +74,11 @@ const Projects = styled.section`
   `};
 `;
 
-const Project = styled.div`
+const Project = styled.a`
+  flex-grow: 1;
   position: relative;
   display: block;
+  width: calc(100vw * 0.8);
   height: calc(100vw * 0.8);
   max-width: 100%;
   border-top: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
@@ -91,7 +105,8 @@ const Project = styled.div`
     transition: background ${props => props.theme.animationDurationL}ms;
   }
 
-  ${media.tablet`
+  ${media.tabletPortrait`
+    width: calc(100vw / ${nColumnsTablet} * 0.8);
     height: calc(100vw / ${nColumnsTablet} * 0.8);
     border-left: ${props => `calc(${props.theme.padding}/2)`} solid ${props => props.theme.black};
 
@@ -105,7 +120,8 @@ const Project = styled.div`
     }
   `};
 
-  ${media.laptopL`
+  ${media.laptop`
+    width: calc(100vw / ${nColumnsLaptopL} * 0.8);
     height: calc(100vw / ${nColumnsLaptopL} * 0.8);
 
     /* 3 columns */
@@ -121,6 +137,7 @@ const Project = styled.div`
   `};
 
   ${media.desktop`
+    width: calc(100vw / ${nColumnsDesktop} * 0.8);
     height: calc(100vw / ${nColumnsDesktop} * 0.8);
 
     /* 4 columns */
@@ -137,6 +154,7 @@ const Project = styled.div`
 
   body.is-loading & {
     cursor: default;
+    background: ${props => props.theme.black};
 
     &::after {
       background: ${props => props.theme.black};
@@ -157,8 +175,17 @@ const Title = styled.h3`
   text-align: center;
   opacity: 0;
   transform: translateY(-50%);
+  color: black;
 
   ${Project}:hover & {
     opacity: 1;
   }
+`;
+
+const Blackk = styled.div`
+  position: relative;
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  background-color: ${props => props.theme.black};
 `;

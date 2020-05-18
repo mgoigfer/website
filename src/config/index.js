@@ -1,4 +1,4 @@
-const DEFAULT_SEO = {
+export const DEFAULT_SEO = {
   title: 'Mikel Goig - Desarrollador web full-stack',
   description: 'Mikel Goig - Desarrollador web full-stack',
 
@@ -27,9 +27,33 @@ const DEFAULT_SEO = {
   },
 };
 
-const PRISMIC_API_URL = 'https://mikelgoig-website.prismic.io/api/v2';
+// Device sizes (in px).
+export const DEVICES = {
+  phone: {
+    min: 0,
+    max: 599,
+  },
+  tabletPortrait: {
+    min: 600,
+    max: 899,
+  },
+  tabletLandscape: {
+    min: 900,
+    max: 1199,
+  },
+  laptop: {
+    min: 1200,
+    max: 1799,
+  },
+  desktop: {
+    min: 1800,
+    max: 9999,
+  },
+};
 
-const THEME = {
+export const PRISMIC_API_URL = 'https://mikelgoig-website.prismic.io/api/v2';
+
+export const THEME = {
   // Colors.
   white: '#fff',
   black: '#000',
@@ -46,10 +70,4 @@ const THEME = {
   // Animations.
   animationDuration: 400,
   animationDurationL: 800,
-};
-
-export {
-  DEFAULT_SEO,
-  PRISMIC_API_URL,
-  THEME,
 };

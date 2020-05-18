@@ -1,5 +1,6 @@
 /* Vendor */
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 /* API */
 import { getProjectsAPI } from '../api';
@@ -30,8 +31,16 @@ export default class extends Component {
     return (
       <MainLayout>
         <Header isFixed={true}/>
-        <Projects projects={projects}/>
+
+        <ProjectsWrapper>
+          <Projects projects={projects}/>
+        </ProjectsWrapper>
       </MainLayout>
     );
   }
 }
+
+const ProjectsWrapper = styled.div`
+  margin-top: ${props => props.theme.headerHeight};
+  padding: 0 calc(5px + 2vw) calc(5px + 2vw);
+`;
