@@ -121,7 +121,7 @@ const CardWrapper = styled.div`
   max-width: 265px;
   margin: 0 auto;
   overflow: hidden;
-  transform: translateY(-50%);
+  transform: translate3d(0, -50%, 0);
 
   ${media.tabletPortrait`
     height: calc(${h1FontSizeTablet} + ${h2FontSizeTablet});

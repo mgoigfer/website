@@ -42,5 +42,5 @@ export default class extends Component {
 
 const ProjectsWrapper = styled.div`
   margin-top: ${props => props.theme.headerHeight};
-  padding: 0 calc(5px + 2vw) calc(5px + 2vw);
+  padding: 0 ${props => props.theme.padding} ${props => props.theme.padding};
 `;

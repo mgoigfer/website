@@ -60,11 +60,11 @@ export default class extends Component {
 
     const scrollTop = document.documentElement.scrollTop;
 
-    // Header HTMLElement.
+    // $Header.
     const headerElement = document.querySelector('.js-header');
     const headerOffsetTop = getElementPosition(headerElement).y;
     const headerDistanceTop = headerOffsetTop - scrollTop;
-    headerElement.style.transform = `translate(0px, -${headerDistanceTop}px)`;
+    headerElement.style.transform = `translate3d(0, -${headerDistanceTop}px, 0)`;
 
     setTimeout(() => {
       Router.push('/work');
@@ -74,7 +74,7 @@ export default class extends Component {
   handleScroll() {
     const scrollTop = document.documentElement.scrollTop;
 
-    // Header HTMLElement.
+    // $Header.
     const headerElement = document.querySelector('.js-header');
     const headerOffsetHeight = headerElement.offsetHeight;
 
@@ -88,10 +88,12 @@ export default class extends Component {
 
     return (
       <MainLayout>
-        <Hello/>
-        <Header isFixed={this.state.isHeaderFixed}/>
+        <Hello />
+
+        <Header isFixed={this.state.isHeaderFixed} />
+
         <ProjectsWrapper>
-          <Projects projects={projects}/>
+          <Projects projects={projects} />
         </ProjectsWrapper>
       </MainLayout>
     );

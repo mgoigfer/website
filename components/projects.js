@@ -2,10 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Link from 'next/link';
 
 /* Helpers */
-import { linkResolver } from 'helpers';
 import media from 'helpers/media';
 
 const mapStateToProps = state => {
@@ -15,14 +13,8 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(class extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     const { projects } = this.props;
-
-    console.log(projects);
 
     return (
       <Projects>
@@ -30,7 +22,7 @@ export default connect(mapStateToProps)(class extends Component {
           <Project
             key={index}
             href={project.data.url}
-            target={'_blank'}
+            target="_blank"
             image={project.data.image.url}
           >
             <Title>
@@ -52,7 +44,6 @@ const Projects = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  grid-template-columns: 1fr;
   background: linear-gradient(
     to right,
     ${props => props.theme.pink} 0%,
@@ -60,18 +51,6 @@ const Projects = styled.section`
     ${props => props.theme.green} 66%,
     ${props => props.theme.yellow} 100%
   );
-
-  ${media.tabletPortrait`
-    grid-template-columns: repeat(${nColumnsTablet}, 1fr);
-  `};
-
-  ${media.laptop`
-    grid-template-columns: repeat(${nColumnsLaptopL}, 1fr);
-  `};
-
-  ${media.desktop`
-    grid-template-columns: repeat(${nColumnsDesktop}, 1fr);
-  `};
 `;
 
 const Project = styled.a`
@@ -174,18 +153,10 @@ const Title = styled.h3`
   font-weight: 600;
   text-align: center;
   opacity: 0;
-  transform: translateY(-50%);
+  transform: translate3d(0, -50%, 0);
   color: black;
 
   ${Project}:hover & {
     opacity: 1;
   }
-`;
-
-const Blackk = styled.div`
-  position: relative;
-  display: block;
-  height: 100%;
-  max-width: 100%;
-  background-color: ${props => props.theme.black};
 `;

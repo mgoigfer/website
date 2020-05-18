@@ -86,11 +86,11 @@ const H1 = styled.h1`
   text-transform: uppercase;
   color: ${props => props.theme.white};
   opacity: 0;
-  transform: translateX(-10vw);
+  transform: translate3d(-10vw, 0, 0);
   transition: all ${props => props.theme.animationDurationL}ms;
 
   ${props => props.isShown && css`
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   `}
 `;

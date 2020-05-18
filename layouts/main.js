@@ -1,10 +1,10 @@
-/* Components */
+/* Vendor */
 import { connect } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
 export default connect(state => state)(({ children }) => (
   <div>
-    <GlobalStyle/>
+    <GlobalStyle />
     {children}
   </div>
 ));
@@ -12,9 +12,7 @@ export default connect(state => state)(({ children }) => (
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     background-color: ${props => props.theme.black};
     color: ${props => props.theme.white};
   }
