@@ -15,6 +15,11 @@ export default function({ isFixed = false }) {
               </a>
             </Link>
           </li>
+          <li>
+            <a href={'https://www.notion.so/mikelgoig/MAC-Manfred-Awesomic-CV-4d3d6a7326044ded8386cd7b6a27625d'} target="_blank">
+              Curriculum
+            </a>
+          </li>
         </ul>
       </Nav>
 
